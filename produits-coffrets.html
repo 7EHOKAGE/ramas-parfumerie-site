@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffrets — Rama's Parfumerie</title>
+<meta name="description" content="Catalogue complet coffrets de Rama's Parfumerie. Livraison à Dakar, paiement Wave et Orange Money.">
+<link rel="canonical" href="https://www.ramasparfumerie.sn/produits-coffrets.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rama's Parfumerie">
+<meta property="og:title" content="Coffrets — Rama's Parfumerie">
+<meta property="og:description" content="Catalogue complet coffrets de Rama's Parfumerie. Livraison à Dakar, paiement Wave et Orange Money.">
+<meta property="og:locale" content="fr_SN">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Coffrets — Rama's Parfumerie">
+<meta name="twitter:description" content="Catalogue complet coffrets de Rama's Parfumerie. Livraison à Dakar, paiement Wave et Orange Money.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340..600;1,9..144,400..560&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+<a class="skip-link" href="#main">Aller au contenu principal</a>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a class="logo" href="index.html">
+      <img class="logo-mark" src="assets/logo-ramas-parfumerie.png" alt="Rama's Parfumerie">
+      <span class="logo-text">Rama's Parfumerie</span>
+    </a>
+
+    <nav class="main-nav" aria-label="Navigation principale">
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="Rechercher un produit" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
+      <button class="icon-btn" id="cartToggle" aria-label="Ouvrir le panier">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="9" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="icon-btn hamburger" id="menuToggle" aria-label="Ouvrir le menu" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="family-tabs-wrap">
+  <nav class="family-tabs" aria-label="Familles de produits"><a class="family-tab" href="produits-parfums.html">Parfums</a><a class="family-tab" href="produits-brumes.html">Brumes corporelles</a><a class="family-tab" href="produits-huiles.html">Huiles parfumées</a><a class="family-tab" href="produits-soins.html">Soins du corps</a><a class="family-tab" href="produits-capillaires.html">Produits capillaires</a><a class="family-tab" href="produits-coffrets.html" aria-current="page">Coffrets</a><a class="family-tab" href="produits-accessoires.html">Accessoires</a><a class="family-tab family-tab--contact" href="contact.html">Contact</a></nav>
+</div>
+
+<div class="scrim" id="scrim"></div>
+
+<nav class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
+  <button class="icon-btn" id="closeMenu" aria-label="Fermer le menu" style="align-self:flex-end;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <ul>
+    <li><a href="index.html" class="mobile-link">Accueil</a></li>
+    <li><a href="produits-parfums.html" class="mobile-link">Parfums</a></li>
+    <li><a href="produits-brumes.html" class="mobile-link">Brumes corporelles</a></li>
+    <li><a href="produits-huiles.html" class="mobile-link">Huiles parfumées</a></li>
+    <li><a href="produits-soins.html" class="mobile-link">Soins du corps</a></li>
+    <li><a href="produits-capillaires.html" class="mobile-link">Produits capillaires</a></li>
+    <li><a href="produits-coffrets.html" class="mobile-link">Coffrets</a></li>
+    <li><a href="produits-accessoires.html" class="mobile-link">Accessoires</a></li>
+    <li><a href="contact.html" class="mobile-link">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Recherche">
+  <div class="search-panel">
+    <form id="headerSearchForm">
+      <input type="search" id="headerSearchInput" placeholder="Rechercher un parfum, une brume, un soin..." aria-label="Rechercher un produit">
+      <button type="submit" class="btn btn-primary">Chercher</button>
+    </form>
+  </div>
+</div>
+
+<main id="main">
+
+<section class="family-hero">
+  <div class="wrap">
+    <p class="breadcrumb"><a href="index.html">Accueil</a> / Coffrets</p>
+    <h1>Coffrets</h1>
+    <p>Des coffrets prêts à offrir ou à s'offrir, pour toutes les occasions.</p>
+    <span class="family-count" id="familyProductCount"></span>
+  </div>
+</section>
+
+<section class="section section--sand" id="boutique">
+  <div class="wrap">
+    <div class="catalogue-toolbar" id="catalogueToolbar">
+      <div class="toolbar-row">
+        <div class="search-field">
+          <input type="search" id="catalogueSearch" placeholder="Rechercher dans coffrets" aria-label="Rechercher un produit dans cette famille">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </div>
+        <button class="clear-search" id="clearSearch" type="button">Effacer la recherche</button>
+        <div class="sort-field">
+          <label class="visually-hidden" for="sortSelect">Trier les produits</label>
+          <select id="sortSelect">
+            <option value="popularite">Popularité</option>
+            <option value="nouveautes">Nouveautés</option>
+            <option value="prix-asc">Prix croissant</option>
+            <option value="prix-desc">Prix décroissant</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="toolbar-row">
+        <div class="toggle-row">
+          <label><input type="checkbox" id="filterNew"> Nouveautés uniquement</label>
+          <label><input type="checkbox" id="filterPromo"> Promotions uniquement</label>
+          <label><input type="checkbox" id="filterStock"> En stock uniquement</label>
+        </div>
+        <div class="range-field">
+          <label for="maxPrice">Prix maximum</label>
+          <input type="range" id="maxPrice" min="1000" step="500">
+          <span id="maxPriceValue"></span>
+        </div>
+      </div>
+    </div>
+
+    <div id="catalogueResults"></div>
+    <div class="load-more-row" id="loadMoreRow"></div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-text" style="color:var(--sand)">Rama's Parfumerie</span>
+        <p>Parfums, brumes corporelles et soins de beauté, livrés partout au Sénégal.</p>
+        <div class="social-row" id="footerSocial" style="margin-top:16px;"></div>
+      </div>
+      <div class="footer-col">
+        <h4>Nos familles</h4>
+        <ul>
+          <li><a href="produits-parfums.html">Parfums</a></li>
+          <li><a href="produits-brumes.html">Brumes corporelles</a></li>
+          <li><a href="produits-huiles.html">Huiles parfumées</a></li>
+          <li><a href="produits-soins.html">Soins du corps</a></li>
+          <li><a href="produits-capillaires.html">Produits capillaires</a></li>
+          <li><a href="produits-coffrets.html">Coffrets</a></li>
+          <li><a href="produits-accessoires.html">Accessoires</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Service client</h4>
+        <ul>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li id="footerWhatsapp"><a href="#">WhatsApp</a></li>
+          <li><a href="contact.html">Nous écrire</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Informations légales</h4>
+        <ul>
+          <li><a href="#">Mentions légales [À compléter]</a></li>
+          <li><a href="#">Politique de confidentialité [À compléter]</a></li>
+          <li><a href="#">Conditions générales de vente [À compléter]</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Rama's Parfumerie. Tous droits réservés.</span>
+      <span>Site conçu pour une expérience d'achat simple et rassurante.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="cart-scrim" id="cartScrim"></div>
+<aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Panier">
+  <div class="cart-head">
+    <h2>Votre panier</h2>
+    <button class="icon-btn" id="closeCart" aria-label="Fermer le panier">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-summary">
+    <div class="summary-row"><span>Sous-total</span><span id="cartSubtotal">0 FCFA</span></div>
+    <div class="summary-row"><span>Livraison</span><span>Calculée à l'étape suivante</span></div>
+    <div class="summary-row total"><span>Total</span><span id="cartTotal">0 FCFA</span></div>
+    <button class="btn btn-secondary btn-block" id="clearCartBtn" type="button">Vider le panier</button>
+    <button class="btn btn-primary btn-block" id="startCheckout" type="button">Passer la commande</button>
+  </div>
+</aside>
+
+<div class="modal-scrim" id="productModalScrim">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+    <button class="icon-btn modal-close" id="closeProductModal" aria-label="Fermer la fiche produit">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div id="productModalContent"></div>
+  </div>
+</div>
+
+<div class="modal-scrim" id="checkoutScrim">
+  <div class="modal-box checkout-box" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+    <button class="icon-btn modal-close" id="closeCheckout" aria-label="Fermer la commande">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <h2 id="checkoutTitle" class="visually-hidden">Passer la commande</h2>
+    <div class="progress-track" id="progressTrack">
+      <div class="progress-step is-done"></div>
+      <div class="progress-step"></div>
+      <div class="progress-step"></div>
+      <div class="progress-step"></div>
+      <div class="progress-step"></div>
+    </div>
+    <div class="step-labels">
+      <span>Panier</span><span>Client</span><span>Livraison</span><span>Paiement</span><span>Confirmation</span>
+    </div>
+
+    <div class="checkout-body">
+
+      <div class="checkout-step is-active" data-step="1">
+        <h3>Récapitulatif du panier</h3>
+        <div id="checkoutCartRecap"></div>
+        <div class="checkout-actions">
+          <span></span>
+          <button class="btn btn-primary" data-next="2" id="toStep2">Continuer</button>
+        </div>
+      </div>
+
+      <div class="checkout-step" data-step="2">
+        <h3>Vos informations</h3>
+        <div class="form-grid">
+          <div class="form-field" id="ckFieldName">
+            <label for="ckName">Nom complet</label>
+            <input type="text" id="ckName" required>
+            <span class="field-error">Merci d'indiquer votre nom complet.</span>
+          </div>
+          <div class="form-field" id="ckFieldPhone">
+            <label for="ckPhone">Téléphone</label>
+            <input type="tel" id="ckPhone" required placeholder="77 000 00 00">
+            <span class="field-error">Merci d'indiquer un numéro de téléphone valide.</span>
+          </div>
+        </div>
+        <div class="checkout-actions">
+          <button class="btn btn-secondary" data-prev="1">Retour</button>
+          <button class="btn btn-primary" id="toStep3">Continuer</button>
+        </div>
+      </div>
+
+      <div class="checkout-step" data-step="3">
+        <h3>Livraison</h3>
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="ckZone">Zone de livraison</label>
+            <select id="ckZone">
+              <option value="dakar">Dakar : [À compléter : frais de livraison]</option>
+              <option value="regions">Autres régions : [À compléter : frais de livraison]</option>
+              <option value="retrait">Retrait en boutique : [À compléter : disponibilité]</option>
+            </select>
+          </div>
+          <div class="form-field" id="ckFieldAddress">
+            <label for="ckAddress">Adresse</label>
+            <input type="text" id="ckAddress" required>
+            <span class="field-error">Merci d'indiquer votre adresse.</span>
+          </div>
+          <div class="form-grid two-col">
+            <div class="form-field">
+              <label for="ckDistrict">Quartier</label>
+              <input type="text" id="ckDistrict">
+            </div>
+            <div class="form-field">
+              <label for="ckCity">Ville</label>
+              <input type="text" id="ckCity" value="Dakar">
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="ckNotes">Indications supplémentaires</label>
+            <textarea id="ckNotes" rows="2"></textarea>
+          </div>
+        </div>
+        <p style="font-size:0.85rem; color:var(--ink-soft);">Délai de livraison estimé : [À compléter : délai de livraison]</p>
+        <div class="checkout-actions">
+          <button class="btn btn-secondary" data-prev="2">Retour</button>
+          <button class="btn btn-primary" id="toStep4">Continuer</button>
+        </div>
+      </div>
+
+      <div class="checkout-step" data-step="4">
+        <h3>Mode de paiement</h3>
+        <div class="payment-options">
+          <button type="button" class="payment-card" data-method="wave" aria-pressed="false">
+            <span class="payment-logo payment-logo--wave">Wave</span>
+            <span>
+              <span class="payment-name">Wave</span>
+              <p class="payment-sub">Paiement mobile sécurisé</p>
+            </span>
+          </button>
+          <button type="button" class="payment-card" data-method="orange" aria-pressed="false">
+            <span class="payment-logo payment-logo--om">OM</span>
+            <span>
+              <span class="payment-name">Orange Money</span>
+              <p class="payment-sub">Paiement mobile sécurisé</p>
+            </span>
+          </button>
+        </div>
+        <div class="summary-row total"><span>Montant à payer</span><span id="paymentAmount">0 FCFA</span></div>
+        <p class="payment-banner" id="paymentBanner"></p>
+        <div class="checkout-actions">
+          <button class="btn btn-secondary" data-prev="3">Retour</button>
+          <button class="btn btn-primary" id="toStep5" disabled>Confirmer la commande</button>
+        </div>
+      </div>
+
+      <div class="checkout-step" data-step="5">
+        <div class="confirmation-box">
+          <div class="confirmation-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="30" height="30"><path d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3>Merci pour votre commande</h3>
+          <p>Votre commande a été enregistrée. Finalisez votre paiement puis confirmez-le nous sur WhatsApp.</p>
+          <dl class="order-recap" id="orderRecap"></dl>
+          <a href="#" class="btn btn-primary btn-block" id="whatsappConfirmBtn" target="_blank" rel="noopener">Contacter Rama's Parfumerie sur WhatsApp</a>
+          <button class="btn btn-secondary btn-block" id="closeConfirmation" style="margin-top:12px;">Fermer</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<button class="back-to-top" id="backToTop" aria-label="Retour en haut de page">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<a class="whatsapp-float" id="whatsappFloat" href="#" target="_blank" rel="noopener" aria-label="Contacter Rama's Parfumerie sur WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.7 14.2c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.5-3.9-4.6-4.1-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 1-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.5.7 1.8.8 1.9.1.2.1.4 0 .6-.1.2-.2.3-.4.5-.2.2-.4.4-.5.6-.2.2-.4.4-.2.7.2.4.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.9 1.8.3.1.5.1.7-.1.2-.2.8-.9 1-1.3.2-.3.4-.3.7-.2.3.1 1.7.8 2 .9.3.1.5.2.6.3.1.2.1.9-.1 1.5z"/></svg>
+</a>
+<script>window.CATALOGUE_CATEGORY = "coffrets";</script>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/catalogue.js"></script>
+</body>
+</html>
