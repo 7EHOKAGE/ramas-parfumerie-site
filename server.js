@@ -111,7 +111,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.static(__dirname));
+const staticRoot = fs.existsSync(path.join(__dirname, 'index.html'))
+  ? __dirname
+  : path.join(__dirname, '..');
+app.use(express.static(staticRoot));
 
 function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || '').trim());
@@ -175,6 +178,10 @@ app.get('/api/health', (_req, res) => {
   res.json({ ok: true, status: 'server-running' });
 });
 
-app.listen(PORT, () => {
-  console.log(`Serveur démarré sur http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Serveur démarré sur http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
