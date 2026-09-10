@@ -95,12 +95,16 @@ function renderProducts() {
 async function loadProducts() {
   try {
     const response = await fetch("/api/products");
+    if (!response.ok) throw new Error("API indisponible");
     const payload = await response.json();
     managedProducts = payload.managed;
     products = payload.managed ? payload.products : (window.STORE_PRODUCTS || []);
     renderProducts();
   } catch (error) {
-    setNotice("Impossible de charger le catalogue. Vérifiez que le serveur est démarré.", true);
+    managedProducts = false;
+    products = window.STORE_PRODUCTS || [];
+    renderProducts();
+    setNotice("Mode consultation : le serveur catalogue n'est pas connecté.", true);
   }
 }
 async function ensureManagedProducts() {
