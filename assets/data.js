@@ -12,15 +12,14 @@ const STORE_CONFIG = {
   name: "Rama's Parfumerie",
   whatsapp: "221781558813",
   phone: "+221 78 155 88 13",
-  email: "[À compléter : email]",
+  email: "niangramatoulaye4@gmail.com",
   address: "Thiaroye",
   instagram: "https://www.instagram.com/ramaniang81?utm_source=qr&stkn=MXZiZ2cwMnpkMDAx",
   facebook: "https://www.facebook.com/share/1DZ7AsTwfj/",
   tiktok: "https://www.tiktok.com/@ramsesse1?_r=1&_t=ZS-99XDhvMPcNk",
   deliveryFees: {
-    dakar: "[À compléter : frais de livraison Dakar]",
-    regions: "[À compléter : frais de livraison régions]",
-    retrait: "Gratuit (retrait en boutique)"
+    dakar: "1 000 à 2 000 FCFA",
+    retrait: "Localisation à préciser"
   }
 };
 
@@ -36,7 +35,8 @@ const CATEGORIES = [
   { id:"soins",        name:"Soins du corps",       description:"Des textures riches pour une peau douce.",     page:"produits-soins.html" },
   { id:"capillaires",  name:"Produits capillaires", description:"Des soins pour des cheveux forts et brillants.", page:"produits-capillaires.html" },
   { id:"coffrets",     name:"Coffrets",             description:"Des sélections prêtes à offrir.",              page:"produits-coffrets.html" },
-  { id:"accessoires",  name:"Accessoires",          description:"Pour prolonger et personnaliser votre routine.", page:"produits-accessoires.html" }
+  { id:"accessoires",  name:"Accessoires",          description:"Pour prolonger et personnaliser votre routine.", page:"produits-accessoires.html" },
+  { id:"thiouraye",    name:"Thiouraye (Encens)",  description:"Des encens parfumés pour une atmosphère chaleureuse.", page:"produits-thiouraye.html" }
 ];
 const CATEGORY_MAP = Object.fromEntries(CATEGORIES.map(c => [c.id, c]));
 
@@ -62,7 +62,8 @@ const DEMO_WORDS = {
   soins:       { nouns:["Karité","Beurre de Cacao","Gommage Sucre","Lait Corporel","Crème Mains","Baume Fondant","Huile de Douche","Exfoliant Doux"], adjectives:["Premium","Riche","Onctueux","Réparateur","Apaisant","Velouté"], priceMin:6500, priceMax:15000, refPrefix:"SOI" },
   capillaires: { nouns:["Sérum Brillance","Masque Nourrissant","Huile Fortifiante","Crème Coiffante","Shampoing Doux","Après-Shampoing","Spray Démêlant","Beurre Capillaire"], adjectives:["Intense","Réparateur","Fortifiant","Hydratant","Lissant"], priceMin:8000, priceMax:16500, refPrefix:"CAP" },
   coffrets:    { nouns:["Découverte Signature","Duo Brumes","Trio Parfums","Rituel Beauté","Voyage","Prestige","Cadeau Douceur","Éveil des Sens"], adjectives:["Signature","Élégant","Premium","Exclusif"], priceMin:28000, priceMax:72000, refPrefix:"COF" },
-  accessoires: { nouns:["Pochette Voyage","Vaporisateur Rechargeable","Trousse Beauté","Porte-Flacon","Étui Velours","Miroir de Poche"], adjectives:["Compact","Élégant","Pratique","Voyage"], priceMin:4000, priceMax:13000, refPrefix:"ACC" }
+  accessoires: { nouns:["Pochette Voyage","Vaporisateur Rechargeable","Trousse Beauté","Porte-Flacon","Étui Velours","Miroir de Poche"], adjectives:["Compact","Élégant","Pratique","Voyage"], priceMin:4000, priceMax:13000, refPrefix:"ACC" },
+  thiouraye:   { nouns:["Thiouraye Oud","Thiouraye Musc","Thiouraye Rose","Thiouraye Ambre","Encens Bois de Santal","Encens Vanille"], adjectives:["Oriental","Intense","Précieux","Envoûtant","Traditionnel","Doux"], priceMin:3500, priceMax:50000, refPrefix:"THI" }
 };
 
 /* Nombre de produits générés par famille. Montez ce chiffre librement
@@ -114,7 +115,22 @@ function generateDemoProducts(){
   return list;
 }
 
-const PRODUCTS = generateDemoProducts();
+function loadManagedProducts() {
+  if (typeof XMLHttpRequest === "undefined") return null;
+  try {
+    const request = new XMLHttpRequest();
+    request.open("GET", "/api/products", false);
+    request.send(null);
+    if (request.status !== 200) return null;
+    const payload = JSON.parse(request.responseText);
+    return payload.managed ? payload.products : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+const PRODUCTS = loadManagedProducts() || generateDemoProducts();
+window.STORE_PRODUCTS = PRODUCTS;
 
 function getProduct(id){ return PRODUCTS.find(p => p.id === id); }
 function getProductsByCategory(categoryId){ return PRODUCTS.filter(p => p.categoryId === categoryId); }

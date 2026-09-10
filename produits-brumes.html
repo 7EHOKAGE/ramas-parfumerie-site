@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/logo-ramas-parfumerie.png">
 <title>Brumes corporelles — Rama's Parfumerie</title>
 <meta name="description" content="Catalogue complet brumes corporelles de Rama's Parfumerie. Livraison à Dakar, paiement Wave et Orange Money.">
 <link rel="canonical" href="https://www.ramasparfumerie.sn/produits-brumes.html">
@@ -58,7 +59,7 @@
 </header>
 
 <div class="family-tabs-wrap">
-  <nav class="family-tabs" aria-label="Familles de produits"><a class="family-tab" href="produits-parfums.html">Parfums</a><a class="family-tab" href="produits-brumes.html" aria-current="page">Brumes corporelles</a><a class="family-tab" href="produits-huiles.html">Huiles parfumées</a><a class="family-tab" href="produits-soins.html">Soins du corps</a><a class="family-tab" href="produits-capillaires.html">Produits capillaires</a><a class="family-tab" href="produits-coffrets.html">Coffrets</a><a class="family-tab" href="produits-accessoires.html">Accessoires</a><a class="family-tab family-tab--contact" href="contact.html">Contact</a></nav>
+  <nav class="family-tabs" aria-label="Familles de produits"><a class="family-tab" href="produits-parfums.html">Parfums</a><a class="family-tab" href="produits-brumes.html" aria-current="page">Brumes corporelles</a><a class="family-tab" href="produits-huiles.html">Huiles parfumées</a><a class="family-tab" href="produits-soins.html">Soins du corps</a><a class="family-tab" href="produits-capillaires.html">Produits capillaires</a><a class="family-tab" href="produits-coffrets.html">Coffrets</a><a class="family-tab" href="produits-accessoires.html">Accessoires</a><a class="family-tab" href="produits-thiouraye.html">Thiouraye (Encens)</a></nav>
 </div>
 
 <div class="scrim" id="scrim"></div>
@@ -76,6 +77,7 @@
     <li><a href="produits-capillaires.html" class="mobile-link">Produits capillaires</a></li>
     <li><a href="produits-coffrets.html" class="mobile-link">Coffrets</a></li>
     <li><a href="produits-accessoires.html" class="mobile-link">Accessoires</a></li>
+    <li><a href="produits-thiouraye.html" class="mobile-link">Thiouraye (Encens)</a></li>
     <li><a href="contact.html" class="mobile-link">Contact</a></li>
   </ul>
 </nav>
@@ -145,7 +147,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <span class="logo-text" style="color:var(--sand)">Rama's Parfumerie</span>
-        <p>Parfums, brumes corporelles et soins de beauté, livrés partout au Sénégal.</p>
+        <p>Parfums, brumes corporelles et soins de beauté, livrés partout à Dakar.</p>
         <div class="social-row" id="footerSocial" style="margin-top:16px;"></div>
       </div>
       <div class="footer-col">
@@ -158,6 +160,7 @@
           <li><a href="produits-capillaires.html">Produits capillaires</a></li>
           <li><a href="produits-coffrets.html">Coffrets</a></li>
           <li><a href="produits-accessoires.html">Accessoires</a></li>
+          <li><a href="produits-thiouraye.html">Thiouraye (Encens)</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -165,15 +168,15 @@
         <ul>
           <li><a href="index.html#faq">FAQ</a></li>
           <li id="footerWhatsapp"><a href="#">WhatsApp</a></li>
-          <li><a href="contact.html">Nous écrire</a></li>
+          <li><a href="tel:+221781558813">Téléphone</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Informations légales</h4>
         <ul>
-          <li><a href="#">Mentions légales</a></li>
-          <li><a href="#">Politique de confidentialité</a></li>
-          <li><a href="#">Conditions générales de vente</a></li>
+          <li><a href="informations-legales.html#mentions-legales">Mentions légales</a></li>
+          <li><a href="informations-legales.html#confidentialite">Politique de confidentialité</a></li>
+          <li><a href="informations-legales.html#cgv">Conditions générales de vente</a></li>
         </ul>
       </div>
     </div>
@@ -195,7 +198,7 @@
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-summary">
     <div class="summary-row"><span>Sous-total</span><span id="cartSubtotal">0 FCFA</span></div>
-    <div class="summary-row"><span>Livraison</span><span>Calculée à l'étape suivante</span></div>
+    <div class="summary-row"><span>Livraison</span><span>1 000 à 2 000 FCFA</span></div>
     <div class="summary-row total"><span>Total</span><span id="cartTotal">0 FCFA</span></div>
     <button class="btn btn-secondary btn-block" id="clearCartBtn" type="button">Vider le panier</button>
     <button class="btn btn-primary btn-block" id="startCheckout" type="button">Passer la commande</button>
@@ -265,9 +268,8 @@
           <div class="form-field">
             <label for="ckZone">Zone de livraison</label>
             <select id="ckZone">
-              <option value="dakar">Dakar : [À compléter : frais de livraison]</option>
-              <option value="regions">Autres régions : [À compléter : frais de livraison]</option>
-              <option value="retrait">Retrait en boutique : [À compléter : disponibilité]</option>
+              <option value="dakar">Dakar : 1 000 à 2 000 FCFA</option>
+              <option value="retrait">Retrait en boutique : localisation à préciser</option>
             </select>
           </div>
           <div class="form-field" id="ckFieldAddress">
@@ -282,7 +284,7 @@
             </div>
             <div class="form-field">
               <label for="ckCity">Ville</label>
-              <input type="text" id="ckCity" value="Dakar">
+              <input type="text" id="ckCity" value="Dakar" readonly>
             </div>
           </div>
           <div class="form-field">
@@ -290,7 +292,7 @@
             <textarea id="ckNotes" rows="2"></textarea>
           </div>
         </div>
-        <p style="font-size:0.85rem; color:var(--ink-soft);">Délai de livraison estimé : [À compléter : délai de livraison]</p>
+        <p style="font-size:0.85rem; color:var(--ink-soft);">Livraison uniquement le week-end.</p>
         <div class="checkout-actions">
           <button class="btn btn-secondary" data-prev="2">Retour</button>
           <button class="btn btn-primary" id="toStep4">Continuer</button>
@@ -319,7 +321,7 @@
         <p class="payment-banner" id="paymentBanner"></p>
         <div class="checkout-actions">
           <button class="btn btn-secondary" data-prev="3">Retour</button>
-          <button class="btn btn-primary" id="toStep5" disabled>Confirmer la commande</button>
+          <button class="btn btn-primary" id="toStep5" disabled>Envoyer la commande sur WhatsApp</button>
         </div>
       </div>
 

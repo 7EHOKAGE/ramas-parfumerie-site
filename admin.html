@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administration | Rama's Parfumerie</title>
+<link rel="icon" type="image/png" href="assets/logo-ramas-parfumerie.png">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/admin.css">
+<link rel="stylesheet" href="assets/admin-fix.css">
+</head>
+<body class="admin-page">
+<header class="admin-header">
+  <div class="admin-header-inner">
+    <a class="logo" href="index.html"><img class="logo-mark" src="assets/logo-ramas-parfumerie.png" alt="Rama's Parfumerie"><span class="logo-text">Rama's Parfumerie</span></a>
+    <div class="admin-header-actions"><span class="admin-kicker">Espace administrateur</span><a class="btn btn-secondary" href="index.html">Voir la boutique</a></div>
+  </div>
+</header>
+<main class="admin-main">
+  <section class="admin-intro">
+    <div><p class="admin-eyebrow">Catalogue réel</p><h1>Gérer les produits</h1><p>Ajoutez vos vrais produits, mettez à jour leurs informations et organisez-les par famille.</p></div>
+    <button class="btn btn-primary" id="newProductBtn" type="button">+ Nouveau produit</button>
+  </section>
+  <div class="admin-layout">
+    <aside class="admin-form-panel" id="productFormPanel">
+      <div class="panel-heading"><div><p class="admin-eyebrow">Fiche produit</p><h2 id="formTitle">Nouveau produit</h2></div><div class="panel-heading-actions"><button class="btn btn-primary admin-save-top" id="saveProductTop" type="submit" form="productForm">Ajouter</button><button class="icon-btn" id="resetFormBtn" type="button" aria-label="Réinitialiser le formulaire">×</button></div></div>
+      <form id="productForm">
+        <input type="hidden" id="productId">
+        <label>Nom du produit<input id="productName" type="text" required placeholder="Ex. Thiouraye Oud Royal"></label>
+        <label>Famille<select id="productCategory" required></select></label>
+        <label>Photo du produit<input id="productImageFile" type="file" accept="image/*"><span class="admin-field-help">Choisissez une photo depuis votre ordinateur.</span></label>
+        <div class="admin-image-preview" id="imagePreview"><span>Aucune photo sélectionnée</span></div>
+        <div class="admin-form-grid"><label>Prix (FCFA)<input id="productPrice" type="number" min="1" step="500" required placeholder="15000"></label><label>Ancien prix<input id="productOldPrice" type="number" min="0" step="500" placeholder="Optionnel"></label></div>
+        <label>Référence<input id="productReference" type="text" placeholder="Ex. THI-001"></label>
+        <label>Description<textarea id="productDescription" rows="4" placeholder="Décrivez le produit..."></textarea></label>
+        <input id="productImage" type="hidden">
+        <div class="admin-form-grid"><label>Badge<select id="productBadge"><option value="">Aucun</option><option value="nouveau">Nouveauté</option><option value="promotion">Promotion</option></select></label><label>Popularité<input id="productPopularity" type="number" min="0" max="100" value="50"></label></div>
+        <div class="admin-checks"><label><input id="productStock" type="checkbox" checked> En stock</label><label><input id="productFeatured" type="checkbox"> Mettre en avant</label></div>
+        <p class="admin-form-error" id="formError" role="alert"></p>
+        <button class="btn btn-primary btn-block" type="submit" id="saveProductBtn">Ajouter le produit</button>
+      </form>
+    </aside>
+    <section class="admin-catalogue">
+      <div class="admin-toolbar"><div><p class="admin-eyebrow">Catalogue</p><h2 id="catalogueTitle">Produits réels</h2></div><div class="admin-toolbar-controls"><input id="adminSearch" type="search" placeholder="Rechercher un produit..." aria-label="Rechercher un produit"></div></div>
+      <nav class="admin-family-tabs" id="adminFamilyTabs" aria-label="Filtrer par famille"></nav>
+      <div class="admin-notice" id="adminNotice" role="status"></div>
+      <div class="admin-product-list" id="adminProductList"></div>
+    </section>
+  </div>
+</main>
+<script src="assets/data.js"></script>
+<script src="assets/admin.js"></script>
+</body>
+</html>

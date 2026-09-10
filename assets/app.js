@@ -310,6 +310,8 @@ function notify(message){
    ========================================================================== */
 const checkoutScrim = document.getElementById("checkoutScrim");
 let checkoutState = { name:"", phone:"", zone:"dakar", address:"", district:"", city:"Dakar", notes:"", paymentMethod:null, orderId:null };
+let wavePaymentStartedAt = 0;
+let waveReturnListener = null;
 
 function openCheckout(){
   if (cart.length === 0) return;
@@ -389,12 +391,14 @@ document.querySelectorAll(".payment-card").forEach(card => {
 
 function initiateWavePayment(){
   const banner = document.getElementById("paymentBanner");
-  banner.textContent = "[À configurer : API de paiement Wave]. Le paiement se finalise pour l'instant via WhatsApp après confirmation de la commande.";
+  const waveUrl = "https://pay.wave.com/m/M_sn_5g5xdPQdjvDw/c/sn/";
+  banner.innerHTML = 'Moyen choisi : <strong>Wave</strong>. Le paiement pourra être effectué après l’envoi de la commande : <a href="' + waveUrl + '" target="_blank" rel="noopener">Payer avec Wave</a>.';
   banner.classList.add("is-visible");
 }
 function initiateOrangeMoneyPayment(){
   const banner = document.getElementById("paymentBanner");
-  banner.textContent = "[À configurer : API de paiement Orange Money]. Le paiement se finalise pour l'instant via WhatsApp après confirmation de la commande.";
+  const amount = formatPrice(cartTotals().total);
+  banner.textContent = "Moyen choisi : Orange Money. Après l’envoi de la commande, envoyez " + amount + " au " + STORE_CONFIG.phone + ".";
   banner.classList.add("is-visible");
 }
 function confirmPayment(){
@@ -406,18 +410,20 @@ const toStep5 = document.getElementById("toStep5");
 if (toStep5) toStep5.addEventListener("click", () => {
   if (!checkoutState.paymentMethod) return;
   const result = confirmPayment();
+  const whatsappUrl = buildWhatsAppOrderLink(result.orderId);
+  window.open(whatsappUrl, "_blank", "noopener");
   renderOrderRecap(result);
   goToCheckoutStep(5);
 });
 
 function renderOrderRecap(result){
   const totals = cartTotals();
-  const zoneLabels = { dakar:"Dakar", regions:"Autres régions", retrait:"Retrait en boutique" };
+  const zoneLabels = { dakar:"Dakar", retrait:"Retrait en boutique" };
   const paymentLabels = { wave:"Wave", orange:"Orange Money" };
   document.getElementById("orderRecap").innerHTML =
     '<dt>Numéro de commande</dt><dd>' + result.orderId + '</dd>'
     + '<dt>Client</dt><dd>' + escapeXml(checkoutState.name) + '</dd>'
-    + '<dt>Livraison</dt><dd>' + zoneLabels[checkoutState.zone] + ', ' + escapeXml(checkoutState.city) + '</dd>'
+    + '<dt>Livraison</dt><dd>' + (checkoutState.zone === "retrait" ? "Retrait en boutique (localisation à préciser)" : zoneLabels[checkoutState.zone] + ', ' + escapeXml(checkoutState.city) + ' (1 000 à 2 000 FCFA)') + '</dd>'
     + '<dt>Mode de paiement</dt><dd>' + paymentLabels[checkoutState.paymentMethod] + '</dd>'
     + '<dt>Statut du paiement</dt><dd>' + result.status + '</dd>'
     + '<dt>Total</dt><dd>' + formatPrice(totals.total) + '</dd>';
@@ -440,14 +446,14 @@ if (closeConfirmationBtn) closeConfirmationBtn.addEventListener("click", () => {
    ========================================================================== */
 function buildWhatsAppOrderLink(orderId){
   const totals = cartTotals();
-  const zoneLabels = { dakar:"Dakar", regions:"Autres régions", retrait:"Retrait en boutique" };
+  const zoneLabels = { dakar:"Dakar", retrait:"Retrait en boutique" };
   const paymentLabels = { wave:"Wave", orange:"Orange Money" };
   const lines = [
     "Nouvelle commande : " + STORE_CONFIG.name,
     "Nom du client : " + checkoutState.name,
     "Téléphone : " + checkoutState.phone,
     "Adresse : " + checkoutState.address + (checkoutState.district ? (", " + checkoutState.district) : ""),
-    "Ville : " + checkoutState.city + " (" + zoneLabels[checkoutState.zone] + ")",
+    "Mode de remise : " + (checkoutState.zone === "retrait" ? "Retrait en boutique (localisation à préciser)" : "Livraison à Dakar"),
     "Mode de paiement : " + (paymentLabels[checkoutState.paymentMethod] || ""),
     "",
     "Produits commandés :"
@@ -458,6 +464,7 @@ function buildWhatsAppOrderLink(orderId){
   });
   lines.push("");
   lines.push("Sous-total : " + formatPrice(totals.subtotal));
+  lines.push(checkoutState.zone === "retrait" ? "Retrait en boutique : localisation à préciser" : "Livraison à Dakar : 1 000 à 2 000 FCFA");
   lines.push("Total : " + formatPrice(totals.total));
   lines.push("Numéro de commande : " + orderId);
   const message = encodeURIComponent(lines.join("\n"));

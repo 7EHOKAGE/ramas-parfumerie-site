@@ -10,7 +10,7 @@ window.CATALOGUE_PAGE = true;
 
 const categoryId = window.CATALOGUE_CATEGORY;
 const PAGE_SIZE = 24;
-const PRICE_LIMITS = { parfums:70000, brumes:70000, huiles:70000, soins:65000, capillaires:50000, coffrets:65000, accessoires:30000 };
+const PRICE_LIMITS = { parfums:70000, brumes:70000, huiles:70000, soins:65000, capillaires:50000, coffrets:65000, accessoires:30000, thiouraye:50000 };
 
 const urlParams = new URLSearchParams(window.location.search);
 

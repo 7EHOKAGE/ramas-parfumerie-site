@@ -9,7 +9,8 @@ function renderRow(elementId, list){
 }
 function renderNewArrivals(){ renderRow("newArrivalsRow", PRODUCTS.filter(p => p.badge === "nouveau").slice(0, 12)); }
 
-document.getElementById("heroImage").src = placeholderImage("Rama's Parfumerie", "hero");
+document.getElementById("heroImage").src = "assets/logo-ramas-hero.png";
+document.getElementById("heroImage").alt = "Logo de Rama's Parfumerie";
 renderNewArrivals();
 
 })();
