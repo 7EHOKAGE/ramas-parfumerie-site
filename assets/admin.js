@@ -15,6 +15,7 @@ let products = [];
 let editingId = null;
 let activeCategory = "";
 let managedProducts = false;
+let localCatalog = false;
 const byId = id => document.getElementById(id);
 const categoryName = id => (categories.find(category => category.id === id) || {}).name || id;
 const escapeHtml = value => String(value || "").replace(/[&<>"']/g, character => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;", "'":"&#039;"}[character]));
@@ -92,6 +93,11 @@ function renderProducts() {
       + '</article>';
   }).join("");
 }
+function saveLocalCatalog() {
+  localStorage.setItem("ramasProducts", JSON.stringify(products));
+  managedProducts = true;
+  localCatalog = true;
+}
 async function loadProducts() {
   try {
     const response = await fetch("/api/products");
@@ -102,16 +108,22 @@ async function loadProducts() {
     renderProducts();
   } catch (error) {
     managedProducts = false;
-    products = window.STORE_PRODUCTS || [];
+    localCatalog = true;
+    try { products = JSON.parse(localStorage.getItem("ramasProducts")) || window.STORE_PRODUCTS || []; }
+    catch (storageError) { products = window.STORE_PRODUCTS || []; }
     renderProducts();
     setNotice("Mode consultation : le serveur catalogue n'est pas connecté.", true);
   }
 }
 async function ensureManagedProducts() {
   if (managedProducts) return;
-  const response = await fetch("/api/products", { method:"PUT", headers:{"Content-Type":"application/json"}, body:JSON.stringify(products) });
-  if (!response.ok) throw new Error("Impossible de sauvegarder le catalogue de départ.");
-  managedProducts = true;
+  try {
+    const response = await fetch("/api/products", { method:"PUT", headers:{"Content-Type":"application/json"}, body:JSON.stringify(products) });
+    if (!response.ok) throw new Error("API indisponible");
+    managedProducts = true;
+  } catch (error) {
+    saveLocalCatalog();
+  }
 }
 function readSelectedImage() {
   const file = byId("productImageFile").files[0];
@@ -140,6 +152,15 @@ byId("productForm").addEventListener("submit", async event => {
   const url = editingId ? "/api/products/" + editingId : "/api/products";
   try {
     await ensureManagedProducts();
+    if (localCatalog) {
+      const nextId = products.reduce((max, item) => Math.max(max, Number(item.id) || 0), 0) + 1;
+      products = editingId
+        ? products.map(product => Number(product.id) === Number(editingId) ? { ...product, ...payload, id: editingId } : product)
+        : [...products, { ...payload, id: nextId }];
+      saveLocalCatalog();
+      setNotice(editingId ? "Produit modifié sur cet appareil." : "Produit ajouté sur cet appareil.");
+      resetForm(); renderProducts(); return;
+    }
     const response = await fetch(url, { method: editingId ? "PUT" : "POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(payload) });
     const result = await response.json();
     if (!response.ok) throw new Error(result.message || "Enregistrement impossible.");
@@ -156,6 +177,10 @@ byId("adminProductList").addEventListener("click", async event => {
     const product = products.find(item => Number(item.id) === Number(stockButton.dataset.stock));
     if (!product) return;
     await ensureManagedProducts();
+    if (localCatalog) {
+      products = products.map(item => Number(item.id) === Number(product.id) ? { ...item, stock:!item.stock } : item);
+      saveLocalCatalog(); renderProducts(); return;
+    }
     const response = await fetch("/api/products/" + product.id, { method:"PUT", headers:{"Content-Type":"application/json"}, body:JSON.stringify({ ...product, stock:!product.stock }) });
     if (response.ok) { setNotice(product.stock ? "Produit marqué en rupture de stock." : "Produit remis en stock."); await loadProducts(); }
     return;
@@ -164,6 +189,10 @@ byId("adminProductList").addEventListener("click", async event => {
     const product = products.find(item => Number(item.id) === Number(deleteButton.dataset.delete));
     if (!product || !window.confirm("Supprimer « " + product.name + " » ?")) return;
     await ensureManagedProducts();
+    if (localCatalog) {
+      products = products.filter(item => Number(item.id) !== Number(product.id));
+      saveLocalCatalog(); if (editingId === product.id) resetForm(); renderProducts(); return;
+    }
     const response = await fetch("/api/products/" + product.id, { method:"DELETE" });
     if (response.ok) { setNotice("Produit supprimé."); if (editingId === product.id) resetForm(); await loadProducts(); }
   }

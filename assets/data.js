@@ -116,6 +116,10 @@ function generateDemoProducts(){
 }
 
 function loadManagedProducts() {
+  try {
+    const stored = localStorage.getItem("ramasProducts");
+    if (stored) return JSON.parse(stored);
+  } catch (error) {}
   if (typeof XMLHttpRequest === "undefined") return null;
   try {
     const request = new XMLHttpRequest();
